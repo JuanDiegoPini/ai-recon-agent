@@ -1,0 +1,53 @@
+{
+  "version": "1.1.2",
+  "motor": "groq_solo",
+  "objetivo": "https://lab.example.test/",
+  "fecha_utc": "2026-10-30T12:00:00+00:00",
+  "proveedor": "groq",
+  "modelo": "example-model",
+  "estado": "finalizado_con_limitaciones",
+  "evidencias": [
+    {
+      "id": "EV-001",
+      "herramienta": "consultar_http",
+      "argumentos": {},
+      "resultado": {
+        "estado": "ok",
+        "codigo_http": 200,
+        "tipo": "text/html",
+        "cabeceras": {
+          "server": "example-lab-server"
+        }
+      },
+      "fecha_utc": "2026-10-30T12:00:01+00:00"
+    }
+  ],
+  "hechos": [
+    {
+      "id": "H-001",
+      "area": "http",
+      "nivel": "observed",
+      "afirmacion": "The authorized lab endpoint returned HTTP 200.",
+      "evidencias": ["EV-001"]
+    }
+  ],
+  "acciones": [
+    {
+      "herramienta": "consultar_http",
+      "evidencia": "EV-001",
+      "estado": "ok",
+      "cuenta": true
+    }
+  ],
+  "limitaciones": [
+    "Anonymized example; no public target was contacted.",
+    "The sample does not claim vulnerability validation."
+  ],
+  "decision": {
+    "motivo": "Enough metadata was collected for the demonstration.",
+    "seleccionados": ["H-001"],
+    "hipotesis": [],
+    "resumen": "The authorized lab endpoint was reachable over HTTP. No intrusive checks were performed."
+  }
+}
+
